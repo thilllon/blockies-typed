@@ -21,13 +21,10 @@
   },
   "scripts": {
     "dev": "tsnd ./src/index.ts",
-    "build:tsc": "tsc",
     "build": "tsup",
-    "start": "node ./dist/index.js",
     "test": "jest",
     "lint": "eslint --fix .",
     "format": "prettier -w -l .",
-    "_prerelease": "pnpm format && pnpm lint && concurrently \"pnpm test\" \"pnpm build\"",
     "release": "release-it"
   },
   "dependencies": {
