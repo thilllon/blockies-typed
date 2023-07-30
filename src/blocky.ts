@@ -168,7 +168,9 @@ export const createBuffer = (optsParam: Options) => {
   return PNG.sync.write(png, {});
 };
 
-// Create an icon as data URL
+/**
+ * Create an icon as data URL
+ */
 export const createDataURL = (opts: Options = {}) => {
   const buf = createBuffer(opts);
   return 'data:image/png;base64,' + buf.toString('base64');
