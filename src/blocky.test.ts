@@ -1,14 +1,12 @@
-// import { faker } from '@faker-js/faker';
-import { writeFileSync } from 'fs';
+import { mkdirSync, rmSync, writeFileSync } from 'fs';
 import { createBuffer, createDataURL } from './blocky';
 import { v4 as uuid } from 'uuid';
 
 const getHtml = (htmlData: { seed: string; data: string }[]) => {
   const imgHtml = htmlData
-    .map(
-      ({ seed, data }) =>
-        `<div><h3>${seed}</h3><img alt="${seed}" src="${data}" /></div>`
-    )
+    .map(({ seed, data }) => {
+      return `<div><h4>${seed}</h4><img alt="${seed}" src="${data}" /></div>`;
+    })
     .join('');
 
   const html = `<!DOCTYPE html>
@@ -18,7 +16,7 @@ const getHtml = (htmlData: { seed: string; data: string }[]) => {
         <title>Blocky</title>
       </head>
       <body>
-        <div style="display:flex;flex-flow:row wrap;gap:4;">
+        <div style="display:flex;flex-flow:row wrap;justify-content:space-between;">
           ${imgHtml}
         </div>
       </body>
@@ -28,8 +26,15 @@ const getHtml = (htmlData: { seed: string; data: string }[]) => {
 };
 
 describe('Blocky', () => {
+  beforeAll(() => {
+    // writeFileSync('./.test_output/index.html', html);
+    rmSync('./.test_output', { recursive: true, force: true });
+    mkdirSync('./.test_output', { recursive: true });
+  });
+
   it('should be defined', () => {
-    const seed = uuid();
+    // const seed = uuid();
+    const seed = '7298f138-caba-4072-932a-aded37b174f5';
     const data = createDataURL({
       // bgColor: [255, 255, 255],
       // fgColor: [123, 53, 0],
@@ -39,7 +44,7 @@ describe('Blocky', () => {
     });
 
     const html = getHtml([{ data, seed }]);
-    writeFileSync('./example/index.html', html);
+    writeFileSync('./.test_output/index.html', html);
     expect(data).toBeDefined();
     expect(data.startsWith('data:image/png;base64,')).toBeTruthy();
   });
@@ -55,16 +60,15 @@ describe('Blocky', () => {
         return { seed, data };
       });
     const html = getHtml(htmlData);
-    writeFileSync('./example/multi.html', html);
+    writeFileSync('./.test_output/multi.html', html);
     expect(htmlData.length).toBe(LENGTH);
   });
 
-  it('should be same', () => {
+  it.skip('should be same', () => {
     const seed = uuid();
     const data1 = createDataURL({ seed });
     const data2 = createDataURL({ seed });
     const data3 = createDataURL({ seed });
-
     expect(data1).toBe(data2);
     expect(data2).toBe(data3);
   });

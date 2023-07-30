@@ -1,75 +1,20 @@
-# blocky
+# Blokky
 
-To proved that Github green grass("planting grass") means nothing
+- CLI
+- vanilla JS
+- Download as an image file(`.png`)
 
-[![npm version](https://badge.fury.io/js/blocky.svg)](https://badge.fury.io/js/blocky)
+## Comparison between existing packages
 
-- Multiple useful Github utilities based on `Octokit`
-- Auto commit, auto cleaning stale workflows, auto cleaning dummy files etc.
-- Run cron job using `Github Action`
+| package                                                    | Description                                                                                                                                                                                                                              | Type Support | Provides               | --- |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------------------- | --- |
+| [`ethereum-blockies`](https://npmjs.org)                   | Used in `ethereum mist library`                                                                                                                                                                                                          | ❌           | `createIcon`, `render` |     |
+| [`blockies`](https://www.npmjs.com/package/blockies)       | Identical to `ethereum-blockies`                                                                                                                                                                                                         | ❌           |                        |     |
+| [`blockies-ts`](https://www.npmjs.com/package/blockies-ts) | [TypeScript version of `blockies`](https://github.com/pedrouid/blockies-ts/blob/bda2f2c124a3ab404dcf5077ac7a3545548edfb1/src/index.ts)                                                                                                   |              |                        |     |
+| [`ethereum-blockies-png`]()                                | \* [output을 buffer, png로 변환해줌](https://github.com/petejkim/ethereum-blockies-png/blob/master/index.js) \n \* [render사용하지 않고, png로 만들어줌](https://github.com/MyCryptoHQ/ethereum-blockies-base64/blob/master/src/main.js) |              |                        |     |
+| [`react-blockies`]()                                       | [React component of `blockies`](https://github.com/stephensprinkle-zz/react-blockies/blob/master/src/main.jsx)                                                                                                                           |              |                        |     |
 
-## How to use
+## Reference
 
-1. create a secret
-   Permission to `repo` must be inluded to control workflow
-
-   https://github.com/settings/tokens/new?description=blocky_TOKEN&scopes=repo,read:packages,read:org,delete_repo,workflow
-
-2. set the secret to the target repository
-
-   Go to setting page and set secret as `blocky_TOKEN`
-
-   https://github.com/{OWNER}/{REPO}/settings/secrets/actions
-
-   Make sure that you are the owner of the target repository.
-
-3. initialize blocky and check `./.github/workflows/blocky.yml`
-
-   ```sh
-   npx blocky init
-   ```
-
-## How to contribute this project
-
-Rename `.env.example` to `.env` and fill the environment values by following instructions.
-
-```sh
-# install dependencies
-pnpm
-
-# development
-pnpm dev
-
-# production
-pnpm build
-pnpm start
-```
-
-## How to make a clean git history
-
-```sh
-# interactive rebase and squash all except root commit
-# or, git rebase -i HEAD~11
-git rebase -i --root
-
-git push origin --force main
-```
-
-## clean PR history
-
-```sh
-git config pull.rebase true && git pull --prune && git branch -r | grep --only "commit\/167.*" | xargs git push --delete origin && git pull --prune
-
-
-# git push --delete origin SOME_TAG_NAME
-# git tag --delete SOME_TAG_NAME
-```
-
-## Roadmap
-
-- [ ] husky, lintstaged, commitizen, commitlint
-- [ ] fix the malfunction of `rename stale file`. idea: tree update after set 'sha' as null..
-- [ ] how to make user configurable `runner.ts`
-- [ ] branch is not configurable now, but should be configurable. currently `main` by default
-- [ ] `npx blocky init` does not work and throws error that can't find directory `./.github/workflows/blocky.yml`
-- [ ] connect github action with NPM to publish whenever `git push` occurs to specific branch, such as `release` branch
+- [Use `'data:image/png;base64,' + buf.toString('base64')`](https://github.com/download13/blockies/blob/master/src/blockies.mjs)
+- [Make the package zero dependency without use of `pngjs`, `pnglib`](https://github.com/GeorgeChan/pnglib/blob/master/lib/pnglib.js)
