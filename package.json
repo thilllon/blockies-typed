@@ -2,7 +2,7 @@
   "name": "blokky",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "blocky",
+  "description": "blokky",
   "repository": "git@github.com:thilllon/blokky.git",
   "publishConfig": {
     "access": "public"

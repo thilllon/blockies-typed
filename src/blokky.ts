@@ -171,7 +171,7 @@ export const createBuffer = (optsParam: Options) => {
 /**
  * Create an icon as data URL
  */
-export const createDataURL = (opts: Options = {}) => {
-  const buf = createBuffer(opts);
+export const createDataURL = (options: Options = {}) => {
+  const buf = createBuffer(options);
   return 'data:image/png;base64,' + buf.toString('base64');
 };

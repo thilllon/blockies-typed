@@ -1,1 +1,2 @@
-export * from './blocky';
+export * from './blokky';
+ 
