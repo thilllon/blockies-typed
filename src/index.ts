@@ -1,2 +1,1 @@
-export * from './blokky';
- 
+export * from './blocky';

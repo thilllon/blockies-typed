@@ -1,5 +1,5 @@
 import { mkdirSync, rmSync, writeFileSync } from 'fs';
-import { createBuffer, createDataURL } from './blokky';
+import { createBuffer, createDataURL } from './blocky';
 import { v4 as uuid } from 'uuid';
 
 const getHtml = (htmlData: { seed: string; data: string }[]) => {
@@ -13,7 +13,7 @@ const getHtml = (htmlData: { seed: string; data: string }[]) => {
     <html>
       <head>
         <meta charset="utf-8" />
-        <title>blokky</title>
+        <title>blocky-typed</title>
       </head>
       <body>
         <div style="display:flex;flex-flow:row wrap;justify-content:space-between;">
@@ -25,7 +25,7 @@ const getHtml = (htmlData: { seed: string; data: string }[]) => {
   return html;
 };
 
-describe('blokky', () => {
+describe('blocky-typed', () => {
   beforeAll(() => {
     // writeFileSync('./.test_output/index.html', html);
     rmSync('./.test_output', { recursive: true, force: true });

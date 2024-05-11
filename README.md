@@ -1,4 +1,4 @@
-# Blokky
+# blocky-typed
 
 - CLI
 - vanilla JS

@@ -1,15 +1,15 @@
 {
-  "name": "blokky",
+  "name": "blocky-typed",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "blokky",
-  "repository": "git@github.com:thilllon/blokky.git",
+  "description": "blocky-typed",
+  "repository": "git@github.com:thilllon/blocky-typed.git",
   "publishConfig": {
     "access": "public"
   },
   "author": "thilllon",
   "bugs": {
-    "url": "https://github.com/thilllon/blokky/issues"
+    "url": "https://github.com/thilllon/blocky-typed/issues"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -17,7 +17,7 @@
     "dist"
   ],
   "bin": {
-    "blokky": "./dist/cli.js"
+    "blocky-typed": "./dist/cli.js"
   },
   "scripts": {
     "dev": "tsnd ./src/index.ts",
@@ -28,6 +28,7 @@
     "release": "release-it"
   },
   "dependencies": {
+    "commander": "^12.0.0",
     "pngjs": "^7.0.0"
   },
   "devDependencies": {
