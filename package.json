@@ -24,7 +24,7 @@
     "build": "tsup",
     "test": "jest",
     "lint": "eslint --fix .",
-    "format": "prettier -w -l .",
+    "format": "prettier --write --list-different .",
     "release": "release-it"
   },
   "dependencies": {
