@@ -3,8 +3,9 @@
 import { program } from 'commander';
 import { writeFileSync } from 'fs';
 import path from 'path';
-import { createBuffer, createDataURL } from './blockies';
 import { v4 as uuid } from 'uuid';
+import { createBuffer } from './blockies';
+
 // Usage:
 // npx blockies-typed --output image.png --seed this_is_my_seed
 
@@ -15,11 +16,10 @@ program
   .description('Generate blocky images')
   .option('-o, --output <output>', 'Output file', `${defaultSeed}.png`)
   .option('-s, --seed <seed>', 'Seed for random generation', defaultSeed)
+  .option('-n, --number <number>', 'Number of images to generate', '1')
   .parse(process.argv);
 
-const { output, seed } = program.opts();
-// writeFileSync(
-//   path.join(process.cwd(), output),
-//   Buffer.from(createDataURL({ seed }).split('base64,')[1], 'base64'),
-// );
-writeFileSync(path.join(process.cwd(), output), createBuffer({ seed }));
+const options = program.opts();
+for (let i = 0; i < Number(options.number); i++) {
+  writeFileSync(path.join(process.cwd(), options.output), createBuffer({ seed: options.seed }));
+}
