@@ -27,7 +27,6 @@ const getHtml = (htmlData: { seed: string; data: string }[]) => {
 
 describe('blockies-typed', () => {
   beforeAll(() => {
-    // writeFileSync('./.test_output/index.html', html);
     rmSync('./.test_output', { recursive: true, force: true });
     mkdirSync('./.test_output', { recursive: true });
   });
@@ -64,13 +63,13 @@ describe('blockies-typed', () => {
     expect(htmlData.length).toBe(LENGTH);
   });
 
-  it.skip('should be same', () => {
+  it('same seeds make different images', () => {
     const seed = uuid();
     const data1 = createDataURL({ seed });
     const data2 = createDataURL({ seed });
     const data3 = createDataURL({ seed });
-    expect(data1).toBe(data2);
-    expect(data2).toBe(data3);
+    expect(data1).not.toBe(data2);
+    expect(data2).not.toBe(data3);
   });
 
   it('should be defined', () => {
